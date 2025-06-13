@@ -7,7 +7,7 @@ DISCONNECT_MESSAGE = "DISCONNECT"
 SERVER = "172.31.128.56"
 ADDRESS = (SERVER, PORT)
 
-client = socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM)
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client.connect(ADDRESS)
 
 def send(msg):
@@ -19,3 +19,5 @@ def send(msg):
     client.send(message)
 
 send("Hello, World!")
+send("Hello, Everyone!")
+send("How's everything going on?")
