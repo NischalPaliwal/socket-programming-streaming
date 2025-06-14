@@ -18,6 +18,22 @@ def send(msg):
     client.send(send_length)
     client.send(message)
 
+def receive_messages():
+    """Function to continuously receive messages from server"""
+    while True:
+        try:
+            message_length = client.recv(HEADER).decode(FORMAT)
+            if message_length:
+                message_length = int(message_length)
+                message = client.recv(message_length).decode(FORMAT)
+                print(f"[SERVER] {message}")
+        except ValueError:
+            print("[ERROR] Invalid message length received from server.")
+            break
+        except Exception as e:
+            print(f"[ERROR] Connection lost: {e}")
+            break
+
 send("Hello, World!")
 send("Hello, Everyone!")
 send("How's everything going on?")
