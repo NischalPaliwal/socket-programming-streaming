@@ -4,8 +4,9 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 
-server = smtplib.SMTP('smtp.gmail.com', 25)
+server = smtplib.SMTP('smtp.gmail.com', 587)
 server.ehlo()
+server.starttls()
 
 with open('password.txt', 'r') as p:
     password = p.read()
@@ -33,4 +34,4 @@ payload.add_header('Content-Disposition', f"attachment; filename={image_filename
 msg.attach(payload)
 
 text = msg.as_string()
-server.sendmail(text, from_addr='code.nischal.tech@gmail.com', to_addrs='nischalpaliwal@gmail.com')
+server.sendmail(msg=text, from_addr='code.nischal.tech@gmail.com', to_addrs='nischalpaliwal@gmail.com')
